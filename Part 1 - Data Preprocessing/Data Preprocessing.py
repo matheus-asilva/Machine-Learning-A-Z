@@ -8,7 +8,7 @@ import os
 np.set_printoptions(threshold=np.nan) # To print all values of an array when entered <array_name> in the console
 
 #Changing the main diretory
-os.chdir('C:\\Users\\Matheus\\Documents\\GitHub\\Machine-Learning-A-Z\\Machine Learning A-Z\\Part 1 - Data Preprocessing')
+os.chdir('C:\\Users\\Matheus\\Documents\\GitHub\\Machine-Learning-A-Z\\Part 1 - Data Preprocessing')
 
 #2 Importing the dataset
 dataset = pd.read_csv('Data.csv')
@@ -36,3 +36,15 @@ imputer = imputer.fit(X[:,1:3]) # : to "catch" all the lines ; Columns 1 and 2 h
 X[:, 1:3] = imputer.transform(X[:, 1:3]) #transform method replace the missing data
 
 #4 Categorical Data
+from sklearn.preprocessing import LabelEncoder, OneHotEncoder #class to create an encoder for labels ; an encoder change the named label for a numbered label
+labelencoder_X = LabelEncoder()
+X[:,0] = labelencoder_X.fit_transform(X[:,0]) #each country was encoded (number labeled)
+#0 - France; 1 - Germany; 2 - Spain
+#Machine Learning models can think 2>1>0, so Spain>Germany>France. Their numbers do not have a relation. Need to fix it
+
+#Fix it with "Dummy Variables/Encoding" using OneHotEncoder class. Did this to make sure that the machine learning models do not attribute in order into the categorical variables
+onehotencoder = OneHotEncoder(categorical_features=[0]) #0 is the column to OneHotEncode the categories
+X = onehotencoder.fit_transform(X).toarray() #Will onehotencode X
+#For Purchased column we only need to use a label encoder because the machine learning model will know that is a category without a order between the two.
+labelencoder_Y = LabelEncoder()
+Y = labelencoder_Y.fit_transform(Y)
