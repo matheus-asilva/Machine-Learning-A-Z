@@ -1,0 +1,25 @@
+Steps to make Data Processing:
+
+1 - Import the following libraries:
+	*numpy for mathematical tools
+	*pandas for manage datasets
+
+2 - Import the dataset:
+	Create one matrix for features(x) and one for results(y) with iloc
+
+3 - If there is missing data (OF COURSE IT IS):
+	Replace the missing information with the mean of all column using Imputer. You need to import Imputer from sklearn.preprocessing
+
+4 - Categorize all data:
+	From preprocessing, import LabelEncoder and OneHotEncoder. LabelEncoder transform the label into a numerical label/value and OneHotEncoder transform the numerical label/value to labels without relation.
+		For example: If the label is S(Small) = 0, M(Medium) = 1 and L(Large) = 2, the higher value means the higher size.
+			     If the label is Brazil = 0, France = 1 and USA = 2, each numerical value do not have a relation to each other, that's why we use OneHotEncoder
+
+5 - Split the dataset into the Training set and Test set:
+	From cross_validation, which is inside sklearn, import train_test_split.
+	OBS.: test_size and random_state
+		-test_size = value which value separates your data in the training and the test set. 0.2 is 20%, so 80% go to training set and 20% go to test set
+		-random_state = value which value is a random number to control how the machine learning model separates the data to the training and test sets. It's good to define a value to make sure that you will have always the same information going to the sets. 0 is a good value
+6 - Feature Scaling:
+	Puts the variables in the same range/scaling
+	From preprocessing, import StandardScaler

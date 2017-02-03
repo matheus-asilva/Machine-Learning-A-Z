@@ -19,7 +19,7 @@ X = dataset.iloc[:,:-1].values #iloc is for independent features
 
 #Creating the Matrix of Results- Dependent Variable Vector
 Y = dataset.iloc[:,3].values
-                
+
 #3 Working with missing data
 """
 In the dataset, we have missing data for Spain (age)
@@ -48,3 +48,29 @@ X = onehotencoder.fit_transform(X).toarray() #Will onehotencode X
 #For Purchased column we only need to use a label encoder because the machine learning model will know that is a category without a order between the two.
 labelencoder_Y = LabelEncoder()
 Y = labelencoder_Y.fit_transform(Y)
+
+#5 Splitting the Dataset into the Training set and Test set
+from sklearn.cross_validation import train_test_split
+X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.20, random_state=0) #test size means part of your dataset is going to be the test set and the other part is goint to be the training set. 0.2 is 20% and it is a good choice
+#We have 10 observations so, with 0.2, 8 will be the training set and 2 will be the test set
+
+#6 Feature Scaling - Put the variables in the same range/scale
+"""
+-Machine Learning models are based on Euclidean distance between two data points. sqrt((x2-x1)^2 + (y2-y1)^2)
+-Age and salary have different scale
+
+Two methods:
+    1- Standadization
+            x_stand = (x - mean(x))/standard deviation(x)
+    2- Normalization
+            x_norm = ((x - min(x))/(max(x) - min(x))
+-Sometimes machine learning models aren't based on Euclidean distances but it's important to do features scaling because the algorithm will converge much faster. Decision trees for example
+"""
+from sklearn.preprocessing import StandardScaler
+sc_X = StandardScaler()
+X_train = sc_X.fit_transform(X_train)
+X_test = sc_X.transform(X_test) #do not need to fit X_test because it's already fitted to the training set
+#Do we need to fit and transform the dummy variables?
+    #It depends on how much you want to keep interpretation in your models.
+#Do we need to apply feature scaling to Y (the dependent variable vector)
+    #No in this case because the dependent variable is a CATEGORICAL VARIABLE and it's taking only two values.
