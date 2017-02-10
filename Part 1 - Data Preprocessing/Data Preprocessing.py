@@ -7,7 +7,7 @@ import pandas as pd #manage datasets
 import os
 np.set_printoptions(threshold=np.nan) # To print all values of an array when entered <array_name> in the console
 
-#Changing the main diretory
+#Changing the main directory
 os.chdir('C:\\Users\\Matheus\\Documents\\GitHub\\Machine-Learning-A-Z\\Part 1 - Data Preprocessing')
 
 #2 Importing the dataset

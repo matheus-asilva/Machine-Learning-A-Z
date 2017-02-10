@@ -6,7 +6,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import os
 
-#Changed the main diretory
+#Changed the main directory
 os.chdir('C:\\Users\\Matheus\\Documents\\GitHub\\Machine-Learning-A-Z\\Part 2 - Regression\\2.1 - Simple Linear Regression')
 os.getcwd()
 
